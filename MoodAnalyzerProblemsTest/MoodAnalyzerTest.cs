@@ -9,6 +9,7 @@ namespace MoodAnalyzerProblemsTest
     {
         [DataRow("I am in Sad Mood", "SAD")] //TC1.1: Given “I am in Sad Mood” message should Return SAD
         [DataRow("I am in Any Mood", "HAPPY")] //TC1.2: Given “I am in Any Mood” message should Return HAPPY
+        [DataRow(null, "HAPPY")]
         [TestMethod]
         public void GivenMessageReturnMood(string message, string expected)
         {

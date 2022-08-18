@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace MoodAnalyzerProjblem
 { /// <summary>
-  /// UC 1 Refactor the code to take the mood message in Constructor 
-  ///- Note:
-  ///- MoodAnalyser will have a message Field
-  ///- MoodAnalyser will have 2 Constructors – Default - MoodAnalyser() and with   Parameters – MoodAnalyser(message)
-  ///- analyseMood method will change to support no parameters and use message Field defined for the Class
+  ///UC 2 : Handle Exception if User Provides Invalid Mood
+  /// - Like NULL
   /// </summary>
     public class MoodAnalyzer
     {
@@ -34,10 +31,18 @@ namespace MoodAnalyzerProjblem
             string sad = "SAD";
             string happy = "HAPPY";
 
-            if (message.ToUpper().Contains(sad))
-                return sad;
-            else
+            try 
+            {
+                if (message.ToUpper().Contains(sad))
+                    return sad;
+                else
+                    return happy;
+            }
+            catch (NullReferenceException) //handling NullReferenceException
+            {
                 return happy;
+            }
+            
         }
     }
 }
