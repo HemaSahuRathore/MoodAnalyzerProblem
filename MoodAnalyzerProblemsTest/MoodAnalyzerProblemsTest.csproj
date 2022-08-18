@@ -56,9 +56,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MoodAnalyzerProjblem\MoodAnalyzerProjblem.csproj">
+    <ProjectReference Include="..\MoodAnalyzerProjblem\MoodAnalyzerProblem.csproj">
       <Project>{D4ED81C2-CC3B-43B4-A631-CADB89FF91B2}</Project>
-      <Name>MoodAnalyzerProjblem</Name>
+      <Name>MoodAnalyzerProblem</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

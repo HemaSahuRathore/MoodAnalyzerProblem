@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoodAnalyzerProjblem", "MoodAnalyzerProjblem\MoodAnalyzerProjblem.csproj", "{D4ED81C2-CC3B-43B4-A631-CADB89FF91B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoodAnalyzerProblem", "MoodAnalyzerProjblem\MoodAnalyzerProblem.csproj", "{D4ED81C2-CC3B-43B4-A631-CADB89FF91B2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoodAnalyzerProblemsTest", "MoodAnalyzerProblemsTest\MoodAnalyzerProblemsTest.csproj", "{17D73EE7-54DB-41CC-873E-2F52B956FE0E}"
 EndProject

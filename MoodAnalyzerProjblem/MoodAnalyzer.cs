@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace MoodAnalyzerProjblem
 { /// <summary>
-  ///UC 2 : Handle Exception if User Provides Invalid Mood
-  /// - Like NULL
+  /// UC 3: Inform user if entered Invalid Mood
+  /// - In case of NULL or Empty Mood throw Custom Exception MoodAnalysisException
+  /// - Use Enum to differentiate the Mood
   /// </summary>
     public class MoodAnalyzer
     {
-        public string message;
+        string message;
 
         //default constructor
         public MoodAnalyzer()
@@ -28,21 +29,24 @@ namespace MoodAnalyzerProjblem
         //Method to Analyse Mood
         public string AnalyseMood()
         {
+
             string sad = "SAD";
             string happy = "HAPPY";
 
-            try 
+            try
             {
-                if (message.ToUpper().Contains(sad))
+                if (message.Equals(string.Empty))
+                    throw new MoodAnalysisException("Message cannot be Empty", MoodAnalysisException.ExceptionTypes.EMPTY_MESSAGE);
+                else if (message.ToUpper().Contains(sad))
                     return sad;
                 else
                     return happy;
             }
-            catch (NullReferenceException) //handling NullReferenceException
+            catch (NullReferenceException nreObj)
             {
-                return happy;
+                Console.WriteLine(nreObj.Message);
+                throw new MoodAnalysisException("Message cannot be null", MoodAnalysisException.ExceptionTypes.NULL_MESSAGE);
             }
-            
         }
     }
 }
