@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoodAnalyzerProjblem
+namespace MoodAnalyzerProblem
 {
-    public class MoodAnalysisException: Exception
+    public class MoodAnalysisException : Exception
     {
         public string message;
         public ExceptionTypes exceptionType;
@@ -14,7 +14,9 @@ namespace MoodAnalyzerProjblem
         public enum ExceptionTypes
         {
             NULL_MESSAGE,
-            EMPTY_MESSAGE
+            EMPTY_MESSAGE,
+            CLASS_NOT_FOUND,
+            CONSTRUCTOR_NOT_FOUND
         }
         public MoodAnalysisException(string msg, ExceptionTypes exceptionType) : base(msg) //overriding the base constructor
         {
@@ -23,4 +25,3 @@ namespace MoodAnalyzerProjblem
         }
     }
 }
-
