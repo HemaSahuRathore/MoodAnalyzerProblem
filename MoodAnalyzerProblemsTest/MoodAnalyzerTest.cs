@@ -7,21 +7,15 @@ namespace MoodAnalyzerProblemsTest
     [TestClass]
     public class MoodAnalyzerTest
     {
-        public MoodAnalyzer moodAnalyzerObj;
-
-        [TestInitialize]
-        public void SetUp()
-        {
-            moodAnalyzerObj = new MoodAnalyzer();
-        }
-
-        [DataRow("I am in Sad Mood", "SAD")] //TC1.1
-        [DataRow("I am in Any Mood", "HAPPY")] //TC1.2
+        [DataRow("I am in Sad Mood", "SAD")] //TC1.1: Given “I am in Sad Mood” message should Return SAD
+        [DataRow("I am in Any Mood", "HAPPY")] //TC1.2: Given “I am in Any Mood” message should Return HAPPY
         [TestMethod]
         public void GivenMessageReturnMood(string message, string expected)
         {
+            //Arramge 
+            MoodAnalyzer moodAnalyzer = new MoodAnalyzer(message);
             //Act
-            string actual = moodAnalyzerObj.AnalyseMood(message);
+            string actual = moodAnalyzer.AnalyseMood();
             //Assert
             Assert.AreEqual(expected, actual);
         }

@@ -6,25 +6,38 @@ using System.Threading.Tasks;
 
 namespace MoodAnalyzerProjblem
 { /// <summary>
-  /// UC 1: Given a Message, ability to analyse and respond Happy or Sad Mood, 
-  ///       - Create MoodAnalyser Object 
-  ///       - Call analyseMood function with message as parameter and return Happy or Sad Mood
-  /// TC1.1 : Given “I am in Sad Mood” message should Return SAD
-  /// TC1.2 : Given “I am in Any Mood” message should Return HAPPY
+  /// UC 1 Refactor the code to take the mood message in Constructor 
+  ///- Note:
+  ///- MoodAnalyser will have a message Field
+  ///- MoodAnalyser will have 2 Constructors – Default - MoodAnalyser() and with   Parameters – MoodAnalyser(message)
+  ///- analyseMood method will change to support no parameters and use message Field defined for the Class
   /// </summary>
     public class MoodAnalyzer
     {
-        //Method to Analyse Mood
-        public string AnalyseMood(string message)
+        public string message;
+
+        //default constructor
+        public MoodAnalyzer()
         {
-            string SAD = "SAD";
-            string HAPPY = "HAPPY";
+            this.message = null;
+        }
 
-            if (message.ToUpper().Contains(SAD))
-                return SAD;
+        //Parameterized constructor
+        public MoodAnalyzer(string message)
+        {
+            this.message = message;
+        }
+
+        //Method to Analyse Mood
+        public string AnalyseMood()
+        {
+            string sad = "SAD";
+            string happy = "HAPPY";
+
+            if (message.ToUpper().Contains(sad))
+                return sad;
             else
-                return HAPPY;
-
+                return happy;
         }
     }
 }
