@@ -45,7 +45,7 @@ namespace MoodAnalyzerProblemsTest
             }
         }
 
-        [TestCategory("Reflection")]
+        [TestCategory("Reflection - Create Obj using Non Parameterized Constructor")]
         [TestMethod]
         [DataRow("MoodAnalyzerProblem.MoodAnalyzer", "MoodAnalyzer")]//TC4.1 : Given MoodAnalyser Class Name Should Return MoodAnalyser
         public void GivenClassInfoReturnObjectUsingDefaultConstructor(string className, string constructorName)
@@ -59,7 +59,7 @@ namespace MoodAnalyzerProblemsTest
                      
         }
 
-        [TestCategory("Reflection")]
+        [TestCategory("Reflection - Create Obj using Non Parameterized Constructor")]
         [TestMethod]
         [DataRow("MoodAnalyzerProblem.Mood", "Mood")] //TC4.2 : Given Class Name When Improper Should Throw MoodAnalysisException
         [DataRow("MoodAnalyzerProblem.MoodAnalyzer", "Mood")] //TC4.3 : Given Class When Constructor Not Proper Should Throw MoodAnalysisException 
@@ -73,6 +73,37 @@ namespace MoodAnalyzerProblemsTest
             catch(MoodAnalysisException exception)
             {
                 Assert.AreEqual(expectedmsg,exception.message);
+            }
+        }
+
+        [TestCategory("Reflection - Create Obj using Parameterized Constructor")]
+        [TestMethod]
+        [DataRow("MoodAnalyzerProblem.MoodAnalyzer", "MoodAnalyzer", "I am Happy")]//TC 5.1 : Given MoodAnalyser When Proper Return MoodAnalyser Object 
+        public void GivenClassWithMessageReturnObjectUsingParameterizedConstructor(string className, string constructorName, string  message)
+        {
+            Object expectedObj = new MoodAnalyzer("HAPPY");
+            //Act
+            Object obj = MoodAnalyserFactory.CreateMoodAnalyserUsingParameterizedConstructor (className, constructorName, message);
+            expectedObj.Equals(obj);
+
+        }
+
+
+        [TestMethod]
+        [TestCategory("Reflection - Create Obj using Parameterized Constructor ")]
+        [DataRow("MoodAnalyzerProblem.Mood", "MoodAnalyzer", "I am Happy")]//TC 5.2 : Given Class Name When Improper Should Throw MoodAnalysisException
+        [DataRow("MoodAnalyzerProblem.Mood", "Mood", "I am Happy")]//TC 5.3 :  Given Class When Constructor Not Proper Should Throw MoodAnalysisException 
+
+        public void GivenClassToCreateObjUsingParameterizedConstThrowsException(string className, string constructorName, string message)
+        {
+            string expected = "Class not found";
+            try
+            {
+                object obj = MoodAnalyserFactory.CreateMoodAnalyserUsingParameterizedConstructor(className, constructorName, message);
+            }
+            catch (MoodAnalysisException exception)
+            {
+                Assert.AreEqual(expected, exception.Message);
             }
         }
     }
