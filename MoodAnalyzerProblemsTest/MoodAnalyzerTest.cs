@@ -88,9 +88,8 @@ namespace MoodAnalyzerProblemsTest
 
         }
 
-
-        [TestMethod]
         [TestCategory("Reflection - Create Obj using Parameterized Constructor ")]
+        [TestMethod]
         [DataRow("MoodAnalyzerProblem.Mood", "MoodAnalyzer", "I am Happy")]//TC 5.2 : Given Class Name When Improper Should Throw MoodAnalysisException
         [DataRow("MoodAnalyzerProblem.Mood", "Mood", "I am Happy")]//TC 5.3 :  Given Class When Constructor Not Proper Should Throw MoodAnalysisException 
 
@@ -103,6 +102,35 @@ namespace MoodAnalyzerProblemsTest
             }
             catch (MoodAnalysisException exception)
             {
+                Assert.AreEqual(expected, exception.Message);
+            }
+        }
+
+
+        [TestCategory("Reflection - Invoke Method")]
+        [TestMethod]
+        public void GivenMethodNameShouldInvokeMethod()
+        {
+                string expected = "HAPPY";
+                string mood = MoodAnalyserFactory.InvokeAnalyseMood("HAPPY", "AnalyseMood");
+                Assert.AreEqual(expected, mood);
+            
+        }
+
+        [TestCategory("Reflection - Invoke Method")]
+        [TestMethod] // TC 6.2 : Given Happy Message When Improper Method Should Throw MoodAnalysisException
+        public void GivenImProperMethodThrowException()
+        {   
+            //Arrange
+            string expected = "Method not found";
+            try
+            {   
+                //Act
+                string mood = MoodAnalyserFactory.InvokeAnalyseMood("HAPPY", "Analyser");
+            }
+            catch (MoodAnalysisException exception)
+            {
+                //Assert
                 Assert.AreEqual(expected, exception.Message);
             }
         }

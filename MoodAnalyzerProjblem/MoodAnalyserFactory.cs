@@ -8,16 +8,10 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace MoodAnalyzerProblem
-{  /// <summary>
-   /// UC 5 : Use Reflection to Create MoodAnalyser with Parameter Constructor
-   /// - Use MoodAnalyserFactory to create MoodAnalyser Object with Message Parameneter
-   /// TC 5.1 : Given MoodAnalyser When Proper Return MoodAnalyser Object
-   /// TC 5.2 : Given Class Name When Improper Should Throw MoodAnalysisException
-   /// TC 5.3 : Given Class When Constructor Not Proper Should Throw MoodAnalysisException
-   /// </summary>
+{  
     public class MoodAnalyserFactory
     {   
-        //method to create Mood Analyser with non parameterized Constructor using Reflection
+        // UC 4 : method to create Mood Analyser with non parameterized Constructor using Reflection
         public static object CreateMoodAnalyser(string className, string constructorName)
         {
             string pattern = "." + constructorName + "$";
@@ -44,7 +38,7 @@ namespace MoodAnalyzerProblem
             }
         }
 
-        //method to create Mood Analyser with parameterized constructor using Reflection
+        // UC 5 : method to create Mood Analyser with parameterized constructor using Reflection
         public static object CreateMoodAnalyserUsingParameterizedConstructor(string className, string constructorName, string message)
         {
             Type type = typeof(MoodAnalyzer);
@@ -52,8 +46,8 @@ namespace MoodAnalyzerProblem
             {
                 if (type.Name.Equals(constructorName)) //checking if class name equals to constructor
                 {
-                    ConstructorInfo constructor = type.GetConstructor(new[] { typeof(string) }); //fetching constructor information
-                    object moodAnalyzerObj = constructor.Invoke(new object[] { message });
+                    ConstructorInfo constructor = type.GetConstructor(new[] { typeof(string) }); //new[] array to take param fetching constructor information
+                    Object moodAnalyzerObj = constructor.Invoke(new object[] { message });
                     return moodAnalyzerObj;
                 }
 
@@ -65,6 +59,25 @@ namespace MoodAnalyzerProblem
             else
             {
                 throw new MoodAnalysisException("Class not found", MoodAnalysisException.ExceptionTypes.CLASS_NOT_FOUND);
+            }
+        }
+
+        //UC 6 : Use Reflection to invoke Method
+        public static string InvokeAnalyseMood(string message, string methodName)
+        {
+            try
+            {
+                Type type = Type.GetType("MoodAnalyzerProblem.MoodAnalyzer");
+                object moodAnalyseObject = MoodAnalyserFactory.CreateMoodAnalyserUsingParameterizedConstructor("MoodAnalyzerProblem.MoodAnalyzer", "MoodAnalyzer", "I am Happy");
+                MethodInfo analyseMoodInfo = type.GetMethod(methodName);
+                object mood = analyseMoodInfo.Invoke(moodAnalyseObject, null);
+                return mood.ToString();
+
+            }
+            catch (NullReferenceException)
+            {
+                throw new MoodAnalysisException("Method not found", MoodAnalysisException.ExceptionTypes.METHOD_NOT_FOUND);
+
             }
         }
     }
