@@ -17,7 +17,8 @@ namespace MoodAnalyzerProblem
             EMPTY_MESSAGE,
             CLASS_NOT_FOUND,
             CONSTRUCTOR_NOT_FOUND,
-            METHOD_NOT_FOUND
+            METHOD_NOT_FOUND,
+            NO_SUCH_FIELD
         }
         public MoodAnalysisException(string msg, ExceptionTypes exceptionType) : base(msg) //overriding the base constructor
         {

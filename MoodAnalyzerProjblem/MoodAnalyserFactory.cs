@@ -80,6 +80,27 @@ namespace MoodAnalyzerProblem
 
             }
         }
+
+        // UC 7 : Use Reflection to change mood dynamically
+        public static string SetField(string message, string fieldName)
+        {
+            try
+            {
+                MoodAnalyzer moodAnalyser = new MoodAnalyzer();
+                Type type = typeof(MoodAnalyzer);
+                FieldInfo field = type.GetField(fieldName, BindingFlags.Public | BindingFlags.Instance);
+                if (message == null)
+                {
+                    throw new MoodAnalysisException("Message cannot be null", MoodAnalysisException.ExceptionTypes.NO_SUCH_FIELD);
+                }
+                field.SetValue(moodAnalyser, message);
+                return moodAnalyser.message;
+            }
+            catch (NullReferenceException)
+            {
+                throw new MoodAnalysisException("Field cannot found", MoodAnalysisException.ExceptionTypes.NO_SUCH_FIELD);
+            }
+        }
     }
 
 }
